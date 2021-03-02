@@ -15,8 +15,7 @@
 #include <vector>
 
 class TreeTravel {
-    std::vector<std::vector<int>> results;
-    std::map<int, std::vector<int>> m;
+    std::vector<std::vector<int> > results;
 public:
     TreeTravel();
     ~TreeTravel();
@@ -24,11 +23,14 @@ public:
     void traverse(TreeNode* root);
     bool isBalanced(TreeNode *root);
     
-    void loopTree(TreeNode *root, int index);
-    std::vector<std::vector<int>> levelOrder(TreeNode* root);
+    void loopTree(TreeNode *root, int index, std::map<int, std::vector<int> > &map);
+    std::vector<std::vector<int> > levelOrder(TreeNode* root);
+        
+    std::vector<int> preorder(Node* root, std::vector<int> &result);
     
+    TreeNode* increasingBST(TreeNode* root);
     
-    std::vector<int> preorder(Node* root);
+    TreeNode* buildTree(std::vector<int>& inorder, std::vector<int>& postorder);
     
     void printBT(const std::string& prefix, const TreeNode* node, bool isLeft);
     
