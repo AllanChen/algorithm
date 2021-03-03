@@ -26,6 +26,11 @@
      TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left),right(right) {}
 };
 
+struct ListNode_Pre {
+    ListNode *pre;
+    ListNode *next;
+};
+
 
 struct Node{
     int val;

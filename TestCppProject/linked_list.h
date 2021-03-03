@@ -13,8 +13,6 @@
 
 class Linked_List{
 public:
-    Linked_List();
-    ~Linked_List();
     ListNode* getKthFromEnd(ListNode* head, int k);
 //    void reverseLinked(ListNode &head);
     ListNode* reverseList(ListNode* head);

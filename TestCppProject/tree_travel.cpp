@@ -15,17 +15,6 @@ void loopBT(Node *root, TreeNode *treeNode);
 
 void loopBTree_LR(TreeNode *treeNode, std::vector<int> &mark);
 
-TreeTravel::TreeTravel(){
-    
-}
-
-TreeTravel::~TreeTravel(){
-    
-}
-
-
-
-
 // 遍历二叉树 -- 递归
 void TreeTravel::traverse(TreeNode* root){
     if(root !=nullptr){
@@ -41,9 +30,9 @@ std::vector<int> traverses(TreeNode *root){
         return res;
     }
     std::stack<TreeNode*> stk;
-    
+
     TreeNode *node = root;
-    
+
     while (!stk.empty() || node != nullptr) {
         while (node != nullptr) {
             res.emplace_back(node->val);
@@ -95,17 +84,17 @@ std::vector<std::vector<int>> TreeTravel::levelOrder(TreeNode *root){
             result.push_back(layer_map[i]);
         }
     }
-    
+
     return result;
 }
 
 void TreeTravel::loopTree(TreeNode *root, int index, std::map<int, std::vector<int>> &map){
-    if(root != nullptr){        
+    if(root != nullptr){
         map[index].push_back(root->val);
         index++;
         loopTree(root->left,index, map);
         loopTree(root->right,index, map);
-        
+
     }
 }
 
@@ -131,11 +120,11 @@ std::vector<int> TreeTravel::preorder(Node* root, std::vector<int> &result) {
         3     7
        / \   / \
       2   4 6   8
- 
+
  Output: 2 3 4 5 6 7 8
  **/
 TreeNode* TreeTravel::increasingBST(TreeNode* root){
-    
+
     std::vector<int> result;
     loopBTree_LR(root, result);
     std::vector<TreeNode *>treeNodeVector;
@@ -163,12 +152,12 @@ void loopBTree_LR(TreeNode *treeNode, std::vector<int> &result){
 }
 
 TreeNode* TreeTravel::buildTree(std::vector<int>& inorder, std::vector<int>& postorder) {
-    
+
     int root = postorder[postorder.size()-1];
-    
+
     std::vector<int>::iterator it_inorder = std::find(inorder.begin(), inorder.end(), root);
     int root_position = int (it_inorder - inorder.begin());
-    
+
     std::vector<int>left_inorder, right_inorder;
     for(int i=0; i< root_position; i++){
         left_inorder.push_back(inorder[i]);
@@ -176,7 +165,7 @@ TreeNode* TreeTravel::buildTree(std::vector<int>& inorder, std::vector<int>& pos
     for(int i = root_position + 1; i<inorder.size(); i++){
         right_inorder.push_back(inorder[i]);
     }
-    
+
     std::vector<int>left_postorder, right_postorder;
     for(int i=0; i< root_position; i++){
         left_postorder.push_back(postorder[i]);
@@ -184,14 +173,14 @@ TreeNode* TreeTravel::buildTree(std::vector<int>& inorder, std::vector<int>& pos
     for(int i = root_position; i<inorder.size()-1; i++){
         right_postorder.push_back(postorder[i]);
     }
-    
+
     TreeNode *root_node = new TreeNode(root);
-    
-    
+
+
     for (int i= int(right_postorder.size()); i==0; i--){
 //        root_node->right->val = right_inorder[i];
     }
-    
+
     return new TreeNode();
 }
 
