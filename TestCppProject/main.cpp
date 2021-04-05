@@ -299,191 +299,211 @@ TreeNode* insertLevelOrder(int arr[], TreeNode* root,
 //}
 
 
-int main(int argc, const char * argv[]) {
-    Linked_List *newList = new Linked_List();
-    ListNode *head1 = new ListNode(1);
-    ListNode *head2 = new ListNode(2);
-    ListNode *head3 = new ListNode(3);
-    ListNode *head4 = new ListNode(4);
-    ListNode *head5 = new ListNode(5);
-//    ListNode *head6 = new ListNode(6);
-
-    head1->next = head2;
-    head2->next = head3;
-    head3->next = head4;
-    head4->next = head5;
-    head5->next = NULL;
-//    head6->next = NULL;
-
-//    newList->getKthFromEnd(head1, 1);
-//    newList->reverseList(head1);
-//    reverseList_b(head1);
-//    [1,2,2,3,3,null,null,4,4]
-//    [3,9,20,null,null,15,7]
-//    [2,3,3,4,5,5,4,6,null,8,9,9,8,6]
-//    newList->traverse(head1);
-
-    TreeNode *left = new TreeNode(2);
-    TreeNode *right = new TreeNode(2);
-
-//    TreeNode *left_l = new TreeNode(2);
-    TreeNode *left_r = new TreeNode(3);
-
-    TreeNode *left_l_l = new TreeNode(1);
-
-    TreeNode *right_l = new TreeNode(4);
-    TreeNode *right_l_l = new TreeNode(7);
-    TreeNode *right_l_r = new TreeNode(3);
-
-//    left->left = left_l;
-//    right->right = right_r;
-//    left_l->left = right_l;
-//    right_r->right = left_r;
-
-    left->left = left_r;
-    left->right = right_l;
-//    left_l->left = left_l_l;
-//
-//    left_l->left = right_l;
-//    left_l->right = right_r;
-
-    right->left = left_r;
-    right->right = right_l;
-//    right_l->left = right_l_l;
-//    right_l->right = right_l_r;
-
-//    left_l->left = right_l;
-//    left_r->right = right_r;
-
-    Node *root_node = new Node(1);
-
-    Node *root_node_3 = new Node(3);
-    Node *root_node_2 = new Node(2);
-    Node *root_node_4 = new Node(4);
-    Node *root_node_5 = new Node(5);
-    Node *root_node_6 = new Node(6);
-//
-    root_node->children.push_back(root_node_3);
-    root_node->children.push_back(root_node_2);
-    root_node->children.push_back(root_node_4);
-
-    root_node_3->children.push_back(root_node_5);
-    root_node_3->children.push_back(root_node_6);
-
-
-    TreeNode *root = new TreeNode(1,left,right);
-    TreeTravel *tree = new TreeTravel();
-
-//    tree->maxDepth(root);
-//    std::vector<int> result = tree->preorder(root_node);
-//    tree->increasingBST(root);
-
-//    中序遍历 inorder = [9,3,15,20,7]
-//    后序遍历 postorder = [9,15,7,20,3]
-
-    std::vector<int> inorderss = {9,3,15,20,7};
-    std::vector<int> postorder = {9,15,7,20,3};
-
-//    [2,3,3,4,5,5,4,6,null,8,9,9,8,6]
-//    [1,2,2,3,4,4,3]
-    int arr[] = { 1,3,2,3,4,4,3,5,6,5,6,5,6,5,6 };
-//    [2,3,3,4,5,0,4]
-    int n = sizeof(arr)/sizeof(arr[0]);
-    TreeNode* root_s = insertLevelOrder(arr, root_s, 0, n);
-
-
-
-
-
-
-//    tree->buildTree(inorder, postorder);
-    tree->printBT("", root_s, false);
-
-    std::vector<int> result_sum = {0,0,0,0};
-    sumNumberLeft(root_s->left, result_sum);
-    std::vector<int> res;
-
-    bool result = false;
-
-    if(root_s == nullptr || (root_s->left == nullptr && root_s->right == nullptr)) result = true;
-    if(root_s->left == nullptr || root_s->right == nullptr) result = false;
-
-
-    result = loop_trees_second(root_s->left, root_s->right);
-
-
-//    std::vector<int> result = test_t(root,res);
-//    std::vector<int> result = treeTravel(root);
-
-    std::vector<int> left_result;
-    std::vector<int> right_result;
-    std::vector<int> count_res = {0,0,0,0};
-
-    std::vector<int> count_left_result;
-    std::vector<int> count_right_result;
-
-
-
-
-//    loop_trees(root_s->left, true, left_result,count_res);
-//    loop_trees(root_s->right, false, right_result,count_res);
-//    count_treenumber(root_s->left,true,count_res,count_left_result, count_right_result);
-//    count_treenumber(root_s->right,false,count_res, count_left_result, count_right_result);
-    bool equal_vector = false;
-
-    equal_vector = left_result.size()!=right_result.size()?false:true;
-    for(int i=0; i<left_result.size(); i++){
-//        equal_vector = left_result[i] == right_result[i]?true:false;
-        if(left_result[i] != right_result[i]){
-            equal_vector = false;
-            break;
+//remove duplicates elements from sorted array
+int removeDuplicates(std::vector<int>& input) {
+    if(input.size() == 0) return 0;
+    
+    int i = 0;
+    int j = 0;
+    while (j < input.size()) {
+        int i_val = (int)input[i];
+        int j_val = (int)input[j];
+        if(i != j && (i_val != j_val)){
+            i++;
+            input[i] = input[j];
         }
+        j ++ ;
     }
+    return i+1;
+}
 
-    if(count_res[0]==count_res[2] && count_res[1]==count_res[3] && equal_vector == true) result = true;
+int maxArea(std::vector<int>& height) {
+ 
+    
+}
 
-
-    for(int i=0; i < res.size(); i++)
-       std::cout << res.at(i) << ' ';
-
-
-
-
-
-//    bool isBlancedTree = tree->isBalanced(root);
-//    printf("is BlancedTree -- %d \n",isBlancedTree);
-
-//    std::vector<std::vector<int>> result = tree->levelOrder(root);
-//    tree->preorder(root);
-
-
-
-
-//    maxDepth_a(root);
-    char str[] = "hello";
-//
-//    String_Algorithm *string_algorithm = new String_Algorithm();
-//    printf("%s",string_algorithm->reverse(str));
-
-
-//    string_algorithm->
-
-//    std::vector<char> input({ 'h', 'e', 'l','l', 'o'});
-//    reverseString(input);
-
-
-    std::vector<int> input ({1,2,3});
-    numIdenticalPairs(input);
-
-//    printf("%p\n",a);
-//    printf("%p, %p\n",&str[0], &str[1]);
-//    printf("%p\n",&str);
-//    printf("%p\n",str);
-//
-//    printf("%p\n",&str_2);
-//    printf("%p , %p \n",str_2[0], str_2[1]);
-
-//    reverseString(str);
-
+int main(int argc, const char * argv[]) {
+    //{0,0,1,1,1,2,2,3,3,4}
+    //{1,2,2,3,4,5,5};
+//    {1,1,2}
+    std::vector<int> inputArray = {1,1,2};
+    removeDuplicates(inputArray);
+    
     return 0;
 }
+
+
+//int main(int argc, const char * argv[]) {
+//    Linked_List *newList = new Linked_List();
+//    ListNode *head1 = new ListNode(1);
+//    ListNode *head2 = new ListNode(2);
+//    ListNode *head3 = new ListNode(3);
+//    ListNode *head4 = new ListNode(4);
+//    ListNode *head5 = new ListNode(5);
+////    ListNode *head6 = new ListNode(6);
+//
+//    head1->next = head2;
+//    head2->next = head3;
+//    head3->next = head4;
+//    head4->next = head5;
+//    head5->next = NULL;
+////    head6->next = NULL;
+//
+////    newList->getKthFromEnd(head1, 1);
+////    newList->reverseList(head1);
+////    reverseList_b(head1);
+////    [1,2,2,3,3,null,null,4,4]
+////    [3,9,20,null,null,15,7]
+////    [2,3,3,4,5,5,4,6,null,8,9,9,8,6]
+////    newList->traverse(head1);
+//
+//    TreeNode *left = new TreeNode(2);
+//    TreeNode *right = new TreeNode(2);
+//
+////    TreeNode *left_l = new TreeNode(2);
+//    TreeNode *left_r = new TreeNode(3);
+//
+//    TreeNode *left_l_l = new TreeNode(1);
+//
+//    TreeNode *right_l = new TreeNode(4);
+//    TreeNode *right_l_l = new TreeNode(7);
+//    TreeNode *right_l_r = new TreeNode(3);
+//
+////    left->left = left_l;
+////    right->right = right_r;
+////    left_l->left = right_l;
+////    right_r->right = left_r;
+//
+//    left->left = left_r;
+//    left->right = right_l;
+////    left_l->left = left_l_l;
+////
+////    left_l->left = right_l;
+////    left_l->right = right_r;
+//
+//    right->left = left_r;
+//    right->right = right_l;
+////    right_l->left = right_l_l;
+////    right_l->right = right_l_r;
+//
+////    left_l->left = right_l;
+////    left_r->right = right_r;
+//
+//    Node *root_node = new Node(1);
+//
+//    Node *root_node_3 = new Node(3);
+//    Node *root_node_2 = new Node(2);
+//    Node *root_node_4 = new Node(4);
+//    Node *root_node_5 = new Node(5);
+//    Node *root_node_6 = new Node(6);
+////
+//    root_node->children.push_back(root_node_3);
+//    root_node->children.push_back(root_node_2);
+//    root_node->children.push_back(root_node_4);
+//
+//    root_node_3->children.push_back(root_node_5);
+//    root_node_3->children.push_back(root_node_6);
+//
+//
+//    TreeNode *root = new TreeNode(1,left,right);
+//    TreeTravel *tree = new TreeTravel();
+//
+////    tree->maxDepth(root);
+////    std::vector<int> result = tree->preorder(root_node);
+////    tree->increasingBST(root);
+//
+////    中序遍历 inorder = [9,3,15,20,7]
+////    后序遍历 postorder = [9,15,7,20,3]
+//
+//    std::vector<int> inorderss = {9,3,15,20,7};
+//    std::vector<int> postorder = {9,15,7,20,3};
+//
+////    [2,3,3,4,5,5,4,6,null,8,9,9,8,6]
+////    [1,2,2,3,4,4,3]
+//    int arr[] = { 1,3,2,3,4,4,3,5,6,5,6,5,6,5,6 };
+////    [2,3,3,4,5,0,4]
+//    int n = sizeof(arr)/sizeof(arr[0]);
+//    TreeNode* root_s = insertLevelOrder(arr, root_s, 0, n);
+//
+//
+//
+//
+//
+//
+////    tree->buildTree(inorder, postorder);
+//    tree->printBT("", root_s, false);
+//
+//    std::vector<int> result_sum = {0,0,0,0};
+//    sumNumberLeft(root_s->left, result_sum);
+//    std::vector<int> res;
+//
+//    bool result = false;
+//
+//    if(root_s == nullptr || (root_s->left == nullptr && root_s->right == nullptr)) result = true;
+//    if(root_s->left == nullptr || root_s->right == nullptr) result = false;
+//
+//
+//    result = loop_trees_second(root_s->left, root_s->right);
+//
+//
+////    std::vector<int> result = test_t(root,res);
+////    std::vector<int> result = treeTravel(root);
+//
+//    std::vector<int> left_result;
+//    std::vector<int> right_result;
+//    std::vector<int> count_res = {0,0,0,0};
+//
+//    std::vector<int> count_left_result;
+//    std::vector<int> count_right_result;
+//
+//
+//
+//
+////    loop_trees(root_s->left, true, left_result,count_res);
+////    loop_trees(root_s->right, false, right_result,count_res);
+////    count_treenumber(root_s->left,true,count_res,count_left_result, count_right_result);
+////    count_treenumber(root_s->right,false,count_res, count_left_result, count_right_result);
+//    bool equal_vector = false;
+//
+//    equal_vector = left_result.size()!=right_result.size()?false:true;
+//    for(int i=0; i<left_result.size(); i++){
+////        equal_vector = left_result[i] == right_result[i]?true:false;
+//        if(left_result[i] != right_result[i]){
+//            equal_vector = false;
+//            break;
+//        }
+//    }
+//
+//    if(count_res[0]==count_res[2] && count_res[1]==count_res[3] && equal_vector == true) result = true;
+//
+//
+//    for(int i=0; i < res.size(); i++)
+//       std::cout << res.at(i) << ' ';
+//
+//
+////    bool isBlancedTree = tree->isBalanced(root);
+////    printf("is BlancedTree -- %d \n",isBlancedTree);
+//
+////    std::vector<std::vector<int>> result = tree->levelOrder(root);
+////    tree->preorder(root);
+//
+//
+////    maxDepth_a(root);
+//    char str[] = "hello";
+//
+//
+//    std::vector<int> input ({1,2,3});
+//    numIdenticalPairs(input);
+//
+////    printf("%p\n",a);
+////    printf("%p, %p\n",&str[0], &str[1]);
+////    printf("%p\n",&str);
+////    printf("%p\n",str);
+////
+////    printf("%p\n",&str_2);
+////    printf("%p , %p \n",str_2[0], str_2[1]);
+//
+////    reverseString(str);
+//
+//    return 0;
+//}

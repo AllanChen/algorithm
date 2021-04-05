@@ -44,4 +44,9 @@ void reverseString(std::vector<char>& s){
     }
 }
 
+//remove duplicates elements from sorted array
+//int removeDuplicateElement(std::vector<int>&input){
+//   
+//    return 0;
+//}
 
