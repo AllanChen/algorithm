@@ -319,7 +319,66 @@ int removeDuplicates(std::vector<int>& input) {
 
 int maxArea(std::vector<int>& height) {
  
+    return 0;
+}
+
+//int fib(int n){
+//    if(n == 1 || n == 2) return 1;
+//
+//    return (fib(n - 1) + 1) + (fib(n - 2) + 1) ;
+//}
+
+
+
+//int helper(std::vector<int> &memo, int n){
+//    printf("input ---- %d \n", n);
+//    if(n == 1 || n == 2) return 1;
+//
+//    if(memo[n] != 0) return memo[n];
+//
+//    memo[n] = helper(memo, n-1) + helper(memo, n - 2);
+//    printf("val ---- %d \n", memo[n]);
+//    return memo[n];
+//}
+//
+//
+//int fib2(int N) {
+//    if (N == 1 || N == 2) return 1;
+//
+//    int val = fib2(N - 1) + fib2(N - 2);
+//    printf("val ---- %d \n", val);
+//
+//    return val;
+//}
+//
+//int fib(int N){
+//    if (N<1) return 0;
+//
+//    std::vector<int> memo(N+1, 0);
+//    return helper(memo, N);
+//
+//}
+
+int fibDP(int n){
+    if(n < 1) return 0;
+    if(n == 1 || n == 2) return 1;
     
+    std::vector<int> db_v(n+1, 0);
+
+    db_v[1] = db_v[2] = 1;
+    
+    for(int i=3; i<=n; i++){
+        db_v[i] = db_v[i - 1] + db_v[i-2];
+    }
+    
+    return db_v[n];
+}
+
+int fin(int n){
+    if(n == 1 || n == 2) return 1;
+    int val = fin(n-1) + fin(n-2);
+    printf("result ---- %d \n", val);
+    return val;
 }
 
 int main(int argc, const char * argv[]) {
@@ -328,6 +387,14 @@ int main(int argc, const char * argv[]) {
 //    {1,1,2}
     std::vector<int> inputArray = {1,1,2};
     removeDuplicates(inputArray);
+    
+    
+//    int result = fib(20);
+    int result3 = fibDP(20);
+//    int result2 = fib2(20);
+//    printf("result ---- %d \n", result);
+//    printf("result ---- %d \n", result2);
+    printf("result ---- %d \n", result3);
     
     return 0;
 }
