@@ -17,6 +17,7 @@ public:
 //    void reverseLinked(ListNode &head);
     ListNode* reverseList(ListNode* head);
     
+    ListNode* reverseList_test(ListNode *head);
     void traverse(ListNode* head);
 };
 

@@ -67,14 +67,14 @@
 		556D5B8625B4115500D1AF58 /* TestCppProject */ = {
 			isa = PBXGroup;
 			children = (
+				55C7584525B9803D00DEC40A /* commen_struct.h */,
+				55C7584725B981EB00DEC40A /* linked_list.cpp */,
+				55C7584825B981EB00DEC40A /* linked_list.h */,
 				556D5B8725B4115500D1AF58 /* main.cpp */,
 				55C7585225B9883100DEC40A /* string_algorithm.cpp */,
 				55C7585325B9883100DEC40A /* string_algorithm.h */,
-				55C7584525B9803D00DEC40A /* commen_struct.h */,
-				55C7584725B981EB00DEC40A /* linked_list.cpp */,
 				55C7585825BA7D6A00DEC40A /* tree_travel.cpp */,
 				55C7585925BA7D6A00DEC40A /* tree_travel.h */,
-				55C7584825B981EB00DEC40A /* linked_list.h */,
 			);
 			path = TestCppProject;
 			sourceTree = "<group>";

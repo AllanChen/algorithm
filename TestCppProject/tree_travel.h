@@ -31,6 +31,8 @@ public:
     TreeNode* increasingBST(TreeNode* root);
 
     TreeNode* buildTree(std::vector<int>& inorder, std::vector<int>& postorder);
+    
+    TreeNode* invertTree(TreeNode *root);
 
     void printBT(const std::string& prefix, const TreeNode* node, bool isLeft);
 

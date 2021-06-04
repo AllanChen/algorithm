@@ -94,7 +94,6 @@ void TreeTravel::loopTree(TreeNode *root, int index, std::map<int, std::vector<i
         index++;
         loopTree(root->left,index, map);
         loopTree(root->right,index, map);
-
     }
 }
 
@@ -178,11 +177,50 @@ TreeNode* TreeTravel::buildTree(std::vector<int>& inorder, std::vector<int>& pos
 
 
     for (int i= int(right_postorder.size()); i==0; i--){
-//        root_node->right->val = right_inorder[i];
+        root_node->right->val = right_inorder[i];
     }
 
     return new TreeNode();
 }
+
+
+
+//反转二叉树
+/*
+ 
+ Input:
+ 
+    4
+  /   \
+ 2     7
+ / \   / \
+1   3 6   9
+
+ 
+ Output:
+      4
+    /   \
+   7     2
+  / \   / \
+ 9   6 3   1
+
+ **/
+
+TreeNode* TreeTravel::invertTree(TreeNode *root){
+    
+    if(root == nullptr)
+        return root;
+    
+    
+    TreeNode *leftNode = invertTree(root->left);
+    TreeNode *rightNode = invertTree(root->right);
+    
+    root->left = rightNode;
+    root->right = leftNode;
+    
+    return root;
+}
+
 
 
 //打印二叉树

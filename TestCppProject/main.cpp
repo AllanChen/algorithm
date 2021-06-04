@@ -381,6 +381,15 @@ int fin(int n){
     return val;
 }
 
+void invertTree(TreeNode* root, std::vector<int> &result) {
+
+    if(root != nullptr){
+        invertTree(root->right, result);
+        result.push_back(root->val);
+        invertTree(root->left, result);
+    }
+};
+
 int main(int argc, const char * argv[]) {
     //{0,0,1,1,1,2,2,3,3,4}
     //{1,2,2,3,4,5,5};
@@ -394,7 +403,68 @@ int main(int argc, const char * argv[]) {
 //    int result2 = fib2(20);
 //    printf("result ---- %d \n", result);
 //    printf("result ---- %d \n", result2);
-    printf("result ---- %d \n", result3);
+//    printf("result ---- %d \n", result3);
+    
+    
+    
+        Linked_List *newList = new Linked_List();
+        ListNode *head1 = new ListNode(1);
+        ListNode *head2 = new ListNode(2);
+        ListNode *head3 = new ListNode(3);
+        ListNode *head4 = new ListNode(4);
+        ListNode *head5 = new ListNode(5);
+    //    ListNode *head6 = new ListNode(6);
+    
+        head1->next = head2;
+        head2->next = head3;
+        head3->next = head4;
+        head4->next = head5;
+        head5->next = NULL;
+    //    head6->next = NULL;
+    
+//        newList->getKthFromEnd(head1, 1);
+        ListNode * a = newList->reverseList_test(head1);
+//        newList->reverseList_a(head1);
+    //    [1,2,2,3,3,null,null,4,4]
+    //    [3,9,20,null,null,15,7]
+    //    [2,3,3,4,5,5,4,6,null,8,9,9,8,6]
+    //    newList->traverse(head1);
+    
+    
+    
+        TreeNode *root = new TreeNode(4);
+        TreeNode *left = new TreeNode(2);
+        TreeNode *right = new TreeNode(7);
+    
+        TreeNode *left_l = new TreeNode(1);
+        TreeNode *left_r = new TreeNode(3);
+
+    
+        TreeNode *right_l = new TreeNode(6);
+        TreeNode *right_r = new TreeNode(9);
+        
+    
+        root->left = left;
+        root->right = right;
+    
+        left->left = left_l;
+        left->right = left_r;
+    
+    
+        right->left = right_l;
+        right->right = right_r;
+    
+    
+        std::vector<int> inverTreeResult = {};
+
+    
+//    invertTree(root->right, inverTreeResult);
+//    inverTreeResult.push_back(root->val);
+//    invertTree(root->left, inverTreeResult);
+    
+    invertTree(root, inverTreeResult);
+    int n = sizeof(inverTreeResult)/sizeof(inverTreeResult[0]);
+    TreeNode* root_s = insertLevelOrder(inverTreeResult, root_s, 0,n);
     
     return 0;
 }

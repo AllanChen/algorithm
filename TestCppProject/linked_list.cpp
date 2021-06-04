@@ -17,6 +17,7 @@ ListNode *Linked_List::reverseList(ListNode *head) {
     ListNode *result = reverseList(head->next);
     head->next->next = head;
     head->next = NULL;
+        
     return result;
 }
 
@@ -66,4 +67,16 @@ void Linked_List::traverse(ListNode *head) {
         return;
     }
     traverse(head->next);
+}
+
+
+ListNode *Linked_List::reverseList_test(ListNode *head){
+    if(head == NULL || head->next == NULL){
+        return head;
+    }
+    
+    ListNode *result = reverseList(head->next);
+    head->next->next =  head;
+    head->next = NULL;
+    return result;
 }
