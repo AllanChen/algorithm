@@ -76,15 +76,6 @@ int numIdenticalPairs(std::vector<int>& nums) {
 //    return end;
 //}
 
-
-int test(int count){
-    int sum = 0;
-    if (count == 1) return count;
-    sum = count + test(count-1);
-    return sum;
-}
-
-
 int maxDepth_a(TreeNode* root){
     if(root == NULL){
         return 0;
@@ -95,29 +86,6 @@ int maxDepth_a(TreeNode* root){
     
     return 0;
 }
-
-
-//vector<int> res;
-//       if (root == nullptr) {
-//           return res;
-//       }
-//
-//       stack<TreeNode*> stk;
-//       TreeNode* node = root;
-//       while (!stk.empty() || node != nullptr) {
-//           while (node != nullptr) {
-//               res.emplace_back(node->val);
-//               stk.emplace(node);
-//               node = node->left;
-//           }
-//           node = stk.top();
-//           stk.pop();
-//           node = node->right;
-//       }
-//       return res;
-//   }
-
-
 
 std::vector<int> treeTravel(TreeNode *root){
     std::vector<int> res;
@@ -141,27 +109,6 @@ std::vector<int> treeTravel(TreeNode *root){
         
     }
     return res;
-}
-
-
-std::vector<int> test_t(TreeNode *treeNode,std::vector<int> &result){
-    
-    if(treeNode == nullptr) return result;
-        
-    test_t(treeNode->left,result);
-    test_t(treeNode->right,result);
-    result.push_back(treeNode->val);
-    return result;
-}
-
-std::vector<int> test_left(TreeNode *treeNode,std::vector<int> &result){
-    
-    if(treeNode == nullptr) return result;
-        
-    test_left(treeNode->left,result);
-    test_left(treeNode->right,result);
-    result.push_back(treeNode->val);
-    return result;
 }
 
 //if not L or not R or L.val != R.val: return False
@@ -390,6 +337,43 @@ void invertTree(TreeNode* root, std::vector<int> &result) {
     }
 };
 
+int numWays(int number){
+    if (number == 0){
+           return 1;
+         }
+    if(number <= 2){
+            return number;
+    }
+    return numWays(number - 1) + numWays(number - 2);
+}
+
+ListNode *recureList(ListNode *head, int &step){
+    if(head->next == nullptr || head == nullptr)
+        return head;
+    
+    step ++;
+    ListNode *result = recureList(head->next, step);    
+    if(step <= 3){
+        head->next->next = head;
+        head->next = nullptr;
+    }
+    return result;
+}
+
+ListNode *successorNB = nullptr;
+ListNode* reverseNB(ListNode *head, int n){
+       if (head == nullptr || head->next == nullptr) return head;
+       if (n == 1){
+           successorNB = head->next;
+           return head;
+       }
+       ListNode *last = reverseNB(head->next, n-1);
+       head->next->next = head;
+       head->next = successorNB;
+       return last;
+   }
+
+
 int main(int argc, const char * argv[]) {
     //{0,0,1,1,1,2,2,3,3,4}
     //{1,2,2,3,4,5,5};
@@ -423,7 +407,7 @@ int main(int argc, const char * argv[]) {
     //    head6->next = NULL;
     
 //        newList->getKthFromEnd(head1, 1);
-        ListNode * a = newList->reverseList_test(head1);
+//        ListNode * a = newList->reverseList_test(head1);
 //        newList->reverseList_a(head1);
     //    [1,2,2,3,3,null,null,4,4]
     //    [3,9,20,null,null,15,7]
@@ -463,11 +447,41 @@ int main(int argc, const char * argv[]) {
 //    invertTree(root->left, inverTreeResult);
     
     invertTree(root, inverTreeResult);
-    int n = sizeof(inverTreeResult)/sizeof(inverTreeResult[0]);
-    TreeNode* root_s = insertLevelOrder(inverTreeResult, root_s, 0,n);
+//    int n = sizeof(inverTreeResult)/sizeof(inverTreeResult[0]);
+//    TreeNode* root_s = insertLevelOrder(inverTreeResult, root_s, 0,n);
+    
+//    int sum = numWays(5);
+    
+    int sum = -1;
+    
+//    ListNode *result_list =  recureList(head1, sum);
+
+    
+
+    
+    int max_cout = 3;
+    int index_a = 1;
+    ListNode *result_lists = newList->reversListN_reverse(head1,max_cout);
+//    ListNode *result_lists = reverseNB(head1,max_cout);
+    
+//    ListNode *result_a = nullptr;
+//    while (head1 != nullptr) {
+//        ListNode *temp = head1;
+//        head1 = head1->next;
+//        temp->next = result_a;
+//        result_a = temp;
+//
+//
+//        if(index_a >= max_cout) break;
+//
+//        index_a ++;
+//    }
+    
+    
     
     return 0;
 }
+
 
 
 //int main(int argc, const char * argv[]) {

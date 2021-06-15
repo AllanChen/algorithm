@@ -19,6 +19,11 @@ public:
     
     ListNode* reverseList_test(ListNode *head);
     void traverse(ListNode* head);
+    
+    
+    
+    ListNode *reversListN_notReverse(ListNode *head, int n);
+    ListNode *reversListN_reverse(ListNode *head, int n);
 };
 
 #endif /* linked_list_hpp */
